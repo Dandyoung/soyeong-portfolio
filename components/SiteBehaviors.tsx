@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 /**
  * 페이지 공통 동작. 원본 사이트의 main.js(jQuery) 를 바닐라로 옮긴 것.
  * - 뷰포트 높이 CSS 변수, 로드 후 main 페이드 인
- * - 스크롤 방향에 따라 고정 버튼 숨김
  * - .toslide 등장 애니메이션 + data-src lazy 미디어
  * - info 인트로 페이드, 메뉴 색 반전
  * 레이아웃이 아니라 각 페이지 끝에 두어야 한다. 레이아웃에 두면 페이지 내용이 스트리밍되기 전에 실행되어 .toslide 를 못 찾는다.
@@ -31,14 +30,8 @@ export default function SiteBehaviors() {
     const readyTimer = setTimeout(() => body.classList.add("ready"), 50);
     cleanups.push(() => clearTimeout(readyTimer));
 
-    let last = 0;
-    on("scroll", () => {
-      const y = window.scrollY;
-      const hide = y > last && y > 5;
-      $$<HTMLElement>(".menu-tohide").forEach((el) => el.classList.toggle("hidden", hide));
-      body.classList.toggle("scrolled", y > 5);
-      last = y;
-    }, { passive: true });
+    // 원본은 아래로 스크롤하면 고정 버튼을 숨기지만, 여기서는 Sound 와 Menu 를 항상 보이게 둔다
+    on("scroll", () => { body.classList.toggle("scrolled", window.scrollY > 5); }, { passive: true });
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {

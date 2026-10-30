@@ -11,6 +11,9 @@
 @media (max-width: 820px) { :root { --gutter: 16px; } }
 
 * { box-sizing: border-box; }
+/* 배경 사진은 끌리거나 선택되지 않게. 글자를 드래그할 때 사진이 따라오던 문제 */
+img { -webkit-user-drag: none; user-select: none; }
+.homepage-image, .intro-image-container img, .image-container img { pointer-events: none; }
 html { background: var(--bg); overscroll-behavior-y: contain; }
 /* 홈은 사진이 전부라 끝까지 내리거나 튕길 때 보이는 바탕을 검정으로. 푸터 글자는 흰색 */
 html:has(body.template-index) { background: #000; }
