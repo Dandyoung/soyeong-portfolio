@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 확인용 캡처는 올리지 않는다 (스크립트만)
+screenshots/**/*.png

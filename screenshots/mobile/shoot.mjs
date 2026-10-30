@@ -1,0 +1,30 @@
+import { chromium, devices } from "playwright";
+const base = process.argv[2] || "http://localhost:3000";
+const out = process.argv[3];
+const browser = await chromium.launch({ channel: "chrome" });
+const ctx = await browser.newContext({ ...devices["iPhone 14"], locale: "ko-KR" });
+const page = await ctx.newPage();
+const errors = [];
+page.on("console", (m) => { if (m.type() === "error" || m.type() === "warning") errors.push(m.type() + ": " + m.text().slice(0, 160)); });
+await page.goto(base + "/", { waitUntil: "load" });
+await page.waitForTimeout(1500);
+await page.screenshot({ path: `${out}/m-home-0.png` });
+const vh = await page.evaluate(() => window.innerHeight);
+for (let i = 1; i <= 5; i++) {
+  await page.evaluate((y) => window.scrollTo({ top: y, behavior: "instant" }), vh * i + 40);
+  await page.waitForTimeout(1400);
+  await page.screenshot({ path: `${out}/m-home-${i}.png` });
+}
+await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" }));
+await page.waitForTimeout(800);
+await page.screenshot({ path: `${out}/m-home-end.png` });
+await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" })); await page.waitForTimeout(600); await page.click("#menu-trigger"); await page.waitForTimeout(800);
+await page.screenshot({ path: `${out}/m-menu.png` });
+await page.goto(base + "/info", { waitUntil: "load" }); await page.waitForTimeout(1800);
+await page.screenshot({ path: `${out}/m-info-0.png` });
+await page.evaluate(() => window.scrollTo({ top: window.innerHeight * 1.6, behavior: "instant" })); await page.waitForTimeout(1400);
+await page.screenshot({ path: `${out}/m-info-1.png` });
+await page.goto(base + "/calendar", { waitUntil: "load" }); await page.waitForTimeout(1500);
+await page.screenshot({ path: `${out}/m-calendar.png` });
+console.log("console issues:", errors.length); errors.slice(0, 8).forEach((e) => console.log(" ", e));
+await browser.close();

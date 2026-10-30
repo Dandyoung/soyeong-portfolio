@@ -1,69 +1,42 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { getHomeBlocks, getHomeIntro, site } from "@/content/site";
+import { Banner, PageFooter, SiteLink } from "@/components/Shell";
+import BodyClass from "@/components/BodyClass";
+import SiteBehaviors from "@/components/SiteBehaviors";
 
-export default function Home() {
+const PIXEL = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+
+export default function HomePage() {
+  const intro = getHomeIntro();
+  const blocks = getHomeBlocks();
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <BodyClass className="template-index has-banner" />
+      <div id="keep-scrolling" className="medium uppercase">[ Keep scrolling ]</div>
+      <main>
+        <div className="homepage-block homepage-intro toslide">
+          {intro.video ? (
+            <video id="homepage-video" className="homepage-image" src={intro.video} poster={intro.image} muted loop playsInline preload="metadata" />
+          ) : (
+            <img className="homepage-image" src={intro.image} alt="" style={{ objectPosition: intro.position }} />
+          )}
+          <div className="homepage-hero-text">
+            <p className="homepage-sub medium uppercase">{site.nameKo} · {site.role}</p>
+            <h1>{site.name}</h1>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        {blocks.map((b) => (
+          <div className={`homepage-block toslide${b.dark ? " dark" : ""}`} key={b.title}>
+            <img className="homepage-image" data-src={b.image} src={PIXEL} alt="" style={{ objectPosition: b.position }} />
+            <div className="homepage-title-link">
+              <div className="homepage-title">{b.title}</div>
+              <div className="homepage-link uppercase"><SiteLink href={b.href}>{b.linkLabel}</SiteLink></div>
+            </div>
+          </div>
+        ))}
       </main>
-    </div>
+      <PageFooter />
+      <Banner />
+      <SiteBehaviors />
+    </>
   );
 }
