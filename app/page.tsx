@@ -21,7 +21,11 @@ export default function HomePage() {
           )}
           <div className="homepage-hero-text">
             <p className="homepage-sub medium uppercase">{site.nameKo} / {site.role}</p>
-            <h1>{site.name}</h1>
+            <h1>
+              {site.name.split(" ").map((word, i) => (
+                <span className="word" key={word}><span style={{ animationDelay: `${0.15 + i * 0.18}s` }}>{word}</span></span>
+              ))}
+            </h1>
           </div>
         </div>
         {blocks.map((b) => (
