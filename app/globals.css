@@ -61,7 +61,7 @@ body.show-menu .fixed-trigger, body.show-menu #back-trigger { color: var(--fg-in
 #back-trigger { top: 24px; left: 24px; }
 #sound-trigger { top: 24px; left: 24px; }
 /* 하위 페이지에선 Back 이 왼쪽 위를 쓰므로 사운드 버튼은 왼쪽 아래, 크림 배경이라 검정 */
-body.template-page #sound-trigger { top: auto; bottom: 24px; color: var(--fg); font-size: 13px; line-height: 14px; }
+body.template-page #sound-trigger { left: calc(var(--gutter) + 122px); color: var(--fg); }
 #keep-scrolling { position: fixed; bottom: 48px; left: 50%; transform: translateX(-50%); z-index: 50; color: var(--fg-inverse); font-size: 13px; transition: opacity .5s var(--ease); }
 body.scrolled #keep-scrolling { opacity: 0; }
 body.has-banner #keep-scrolling { bottom: 100px; }
@@ -69,7 +69,7 @@ body.has-banner .menu-container .footer { padding-bottom: 96px; }
 @media (max-width: 820px) {
   .fixed-trigger { font-size: 16px; line-height: 16px; }
   #menu-trigger { top: 16px; right: 16px; } #back-trigger, #sound-trigger { top: 16px; left: 16px; }
-  body.template-page #sound-trigger { top: auto; bottom: 16px; }
+  body.template-page #sound-trigger { left: calc(var(--gutter) + 78px); }
 }
 #menu-trigger .close-label, body.show-menu #menu-trigger .menu-label { display: none; }
 body.show-menu #menu-trigger .close-label { display: inline; }
@@ -77,31 +77,34 @@ body.show-menu #menu-trigger .close-label { display: inline; }
 body.sound-playing #sound-trigger .unmuted { display: inline; }
 
 /* ---------- 오버레이 메뉴 ---------- */
+/* 원본 값 그대로. 열릴 때 : 배경과 컨테이너 .5s, 항목은 150ms 간격으로 블러가 1s 에 걸쳐 걷힘.
+   닫힐 때 : 항목이 먼저 블러로 돌아가고(1s) 컨테이너 .5s, 어두운 배경은 .5s 뒤에 .3s 로 사라진다 */
 .menu-blur {
   position: fixed; inset: 0; z-index: 89;
-  background: #000000a6; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  opacity: 0; pointer-events: none; transition: opacity .5s var(--ease);
+  background: #00000040; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  opacity: 0; pointer-events: none; transition: opacity .3s var(--ease) .5s;
 }
+body:has(.about-intro-container) .menu-blur { background: #00000087; }
 .menu-container {
   position: fixed; inset: 0; z-index: 90; color: var(--fg-inverse);
   display: flex; flex-direction: column; justify-content: space-between;
   opacity: 0; pointer-events: none; transition: opacity .5s var(--ease);
 }
 body.show-menu .menu-blur, body.show-menu .menu-container { opacity: 1; pointer-events: auto; }
+body.show-menu .menu-blur { transition: opacity .5s var(--ease); }
 .homepage-hero-text, .homepage-title-link, #keep-scrolling, .intro-text-container { transition: opacity .5s var(--ease); }
 body.show-menu .homepage-hero-text, body.show-menu .homepage-title-link, body.show-menu #keep-scrolling, body.show-menu .intro-text-container { opacity: 0; }
-@media (max-width: 820px) { .menu-blur { background: #000000b3; } }
+
 .nav {
   position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%);
   align-items: end; font-size: 35px; line-height: 42px; letter-spacing: -.02em;
 }
 .nav .menu-column { grid-column: span 4; white-space: nowrap; }
 /* 원본 : 항목은 블러 30px 로 숨어 있다가 열릴 때 150ms 간격으로 show 가 붙으며 또렷해진다. 올리면 회색 */
-.nav .menu-link { display: block; filter: blur(30px); opacity: 0; transition: color .3s var(--ease), filter 1s var(--ease), opacity .5s var(--ease); }
+.nav .menu-link { display: block; filter: blur(30px); opacity: 1; transition: color .3s var(--ease), filter 1s var(--ease), opacity .5s var(--ease) .5s; }
 .nav .menu-column.show .menu-link { filter: blur(0); opacity: 1; }
 .nav .menu-link:hover { color: var(--muted); }
-.nav .menu-column.soon .menu-link { opacity: 0; cursor: default; }
-.nav .menu-column.soon.show .menu-link { opacity: .4; }
+.nav .menu-column.soon .menu-link { opacity: .4; cursor: default; }
 .nav .soon-label { display: none; }
 .nav .menu-column.soon:hover .label { display: none; }
 .nav .menu-column.soon:hover .soon-label { display: inline; }
@@ -266,3 +269,8 @@ main { animation: reveal-fallback .5s ease 1.5s forwards; }
 @media (max-width: 820px) {
   footer.page-footer .footer-column, footer.page-footer .footer-column:last-child { grid-column: 1 / -1; text-align: left; }
 }
+
+/* ---------- privacy ---------- */
+#privacy-container { padding-top: 157px; min-height: var(--vh); }
+#privacy-container h1 { font-size: inherit; font-weight: 500; margin: 0 0 39px; }
+#privacy-container .small { font-size: 13px; line-height: 14px; }

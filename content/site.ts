@@ -31,9 +31,10 @@ export const site = {
     { label: "YouTube", href: YOUTUBE_CHANNEL },
     { label: "Contact", href: "#" },
   ] satisfies NavItem[],
-  // 실제로 있는 링크만 둔다. SNS 가 생기면 여기에 추가
+  // 메뉴 아래 푸터. Instagram 주소가 생기면 "#" 을 바꾼다
   footer: [
-    { items: [{ label: "YouTube", href: YOUTUBE_CHANNEL }] },
+    { items: [{ label: "Instagram", href: "#" }] },
+    { items: [{ label: "Privacy Policy", href: "/privacy" }] },
     { items: [{ label: "© 2026 Soyeong Lee", href: "#" }] },
   ] satisfies FooterColumn[],
   banner: { text: "달 그림자, 제 1회 대금독주회 [시간의 틈새(闖塞)] 중", linkLabel: "[ Watch ]", href: RECITAL_VIDEO },

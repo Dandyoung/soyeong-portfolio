@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getInfo } from "@/content/site";
-import { BackTrigger, PageFooter } from "@/components/Shell";
+import { BackTrigger } from "@/components/Shell";
 import BodyClass from "@/components/BodyClass";
 import SiteBehaviors from "@/components/SiteBehaviors";
 
@@ -42,7 +42,6 @@ export default function InfoPage() {
           ),
         )}
       </main>
-      <PageFooter />
       <SiteBehaviors />
     </>
   );

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getCalendar } from "@/content/site";
-import { BackTrigger, PageFooter } from "@/components/Shell";
+import { BackTrigger } from "@/components/Shell";
 import BodyClass from "@/components/BodyClass";
 import SiteBehaviors from "@/components/SiteBehaviors";
 
@@ -25,7 +25,6 @@ export default function CalendarPage() {
           ))}
         </div>
       </main>
-      <PageFooter />
       <SiteBehaviors />
     </>
   );

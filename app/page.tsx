@@ -1,5 +1,5 @@
 import { getHomeBlocks, getHomeIntro, site } from "@/content/site";
-import { Banner, PageFooter, SiteLink } from "@/components/Shell";
+import { Banner, SiteLink } from "@/components/Shell";
 import BodyClass from "@/components/BodyClass";
 import SiteBehaviors from "@/components/SiteBehaviors";
 
@@ -33,7 +33,6 @@ export default function HomePage() {
           </div>
         ))}
       </main>
-      <PageFooter />
       <Banner />
       <SiteBehaviors />
     </>
