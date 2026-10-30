@@ -27,6 +27,7 @@ export default function SiteBehaviors() {
     setVh(); on("resize", setVh);
 
     body.classList.remove("fade-out", "noscroll", "show-menu", "scrolled");
+    $$(".menu-column.show").forEach((el) => el.classList.remove("show"));
     const readyTimer = setTimeout(() => body.classList.add("ready"), 50);
     cleanups.push(() => clearTimeout(readyTimer));
 

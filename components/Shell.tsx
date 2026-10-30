@@ -26,8 +26,13 @@ export function MenuOverlay() {
       <div className="menu-container">
         <nav className="nav grid-20 uppercase">
           {site.nav.map((it) => (
-            <div className="menu-column" key={it.label}>
-              <SiteLink className="menu-link" href={it.href}><span>{it.label}</span></SiteLink>
+            <div className={`menu-column${it.href === "#" ? " soon" : ""}`} key={it.label}>
+              {it.href === "#" ? (
+                // 아직 없는 페이지 : 데스크톱에서는 흐리게 두고 올리면 Coming soon, 모바일에서는 숨김 (원본과 같음)
+                <span className="menu-link"><span className="label">{it.label}</span><span className="soon-label">Coming soon</span></span>
+              ) : (
+                <SiteLink className="menu-link" href={it.href}><span>{it.label}</span></SiteLink>
+              )}
             </div>
           ))}
         </nav>

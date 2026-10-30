@@ -6,7 +6,6 @@ import SiteBehaviors from "@/components/SiteBehaviors";
 
 export const metadata: Metadata = { title: "Info" };
 
-const PIXEL = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 
 export default function InfoPage() {
   const info = getInfo();
@@ -34,7 +33,7 @@ export default function InfoPage() {
               {s.images.map((im) => (
                 <div className="image-column toslide" key={im.src}>
                   <div className={`image-container ${im.size}`}>
-                    <img data-src={im.src} src={PIXEL} alt="" style={{ objectPosition: im.position }} />
+                    <img src={im.src} loading="lazy" alt="" style={{ objectPosition: im.position }} />
                     <p className="caption medium">{im.caption}</p>
                   </div>
                 </div>

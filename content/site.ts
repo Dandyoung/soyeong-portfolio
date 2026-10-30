@@ -24,8 +24,9 @@ export const site = {
   description: "대금 연주자 이소영 Soyeong Lee",
   nav: [
     { label: "Info", href: "/info" },
-    { label: "Works", href: "/" },
-    { label: "Calendar", href: "/calendar" },
+    // 아직 없는 페이지는 "#" 으로 두면 글자만 보이고 눌리지 않는다
+    { label: "Works", href: "#" },
+    { label: "Calendar", href: "#" },
     { label: "YouTube", href: YOUTUBE_CHANNEL },
     { label: "Contact", href: "#" },
   ] satisfies NavItem[],
@@ -47,7 +48,7 @@ export function getHomeBlocks(): HomeBlock[] {
   return [
     { title: "달 그림자", linkLabel: "[ Watch ]", href: RECITAL_VIDEO, image: asset("/images/stage-blue.jpg"), position: "45% 38%" },
     { title: "Biography", linkLabel: "[ Read more ]", href: "/info", image: asset("/images/portrait-grey-2.jpg"), position: "60% 25%" },
-    { title: "2027 Dates Announced", linkLabel: "[ View dates ]", href: "/calendar", image: asset("/images/hanbok-purple.jpg"), position: "45% 15%", dark: true },
+    { title: "Calendar", linkLabel: "[ Coming soon ]", href: "#", image: asset("/images/hanbok-purple.jpg"), position: "45% 15%", dark: true },
     { title: "YouTube", linkLabel: "[ Subscribe ]", href: YOUTUBE_CHANNEL, image: asset("/images/stage-green.jpg"), position: "30% 50%" },
   ];
 }

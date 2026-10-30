@@ -3,7 +3,6 @@ import { Banner, PageFooter, SiteLink } from "@/components/Shell";
 import BodyClass from "@/components/BodyClass";
 import SiteBehaviors from "@/components/SiteBehaviors";
 
-const PIXEL = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 
 export default function HomePage() {
   const intro = getHomeIntro();
@@ -30,7 +29,7 @@ export default function HomePage() {
         </div>
         {blocks.map((b) => (
           <div className={`homepage-block toslide${b.dark ? " dark" : ""}`} key={b.title}>
-            <img className="homepage-image" data-src={b.image} src={PIXEL} alt="" style={{ objectPosition: b.position }} />
+            <img className="homepage-image" src={b.image} loading="lazy" alt="" style={{ objectPosition: b.position }} />
             <div className="homepage-title-link">
               <div className="homepage-title">{b.title}</div>
               <div className="homepage-link uppercase"><SiteLink href={b.href}>{b.linkLabel}</SiteLink></div>
