@@ -70,7 +70,7 @@ body.sound-playing #sound-trigger .unmuted { display: inline; }
 /* ---------- 오버레이 메뉴 ---------- */
 .menu-blur {
   position: fixed; inset: 0; z-index: 89;
-  background: #00000040; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  background: #000000a6; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   opacity: 0; pointer-events: none; transition: opacity .5s var(--ease);
 }
 .menu-container {
@@ -81,7 +81,7 @@ body.sound-playing #sound-trigger .unmuted { display: inline; }
 body.show-menu .menu-blur, body.show-menu .menu-container { opacity: 1; pointer-events: auto; }
 .homepage-hero-text, .homepage-title-link, #keep-scrolling, .intro-text-container { transition: opacity .5s var(--ease); }
 body.show-menu .homepage-hero-text, body.show-menu .homepage-title-link, body.show-menu #keep-scrolling, body.show-menu .intro-text-container { opacity: 0; }
-@media (max-width: 820px) { .menu-blur { background: #00000080; } }
+@media (max-width: 820px) { .menu-blur { background: #000000b3; } }
 .nav {
   position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%);
   align-items: end; font-size: 35px; line-height: 42px; letter-spacing: -.02em;
@@ -122,9 +122,26 @@ body.show-menu .homepage-hero-text, body.show-menu .homepage-title-link, body.sh
 .homepage-link { font-size: 35px; line-height: 35px; letter-spacing: -.02em; white-space: nowrap; }
 .homepage-hero-text { position: absolute; left: 0; right: 0; bottom: 20vh; text-align: center; z-index: 1; }
 .homepage-hero-text h1 {
-  margin: 0; font-size: clamp(38px, 5.71vw, 115px); line-height: .9; letter-spacing: -.03em; font-weight: 500;
+  margin: 0; font-size: clamp(38px, 5.71vw, 115px); line-height: .9; font-weight: 500;
+  letter-spacing: .04em; word-spacing: .18em;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, .45);
 }
-.homepage-sub { margin: 0 0 14px; font-size: 13px; line-height: 14px; letter-spacing: .04em; }
+.homepage-sub { margin: 0 0 20px; font-size: 18px; line-height: 20px; letter-spacing: .18em; opacity: .92; }
+/* 인트로가 나타날 때 이름은 자간이 넓게 벌어진 상태에서 모이며 떠오르고, 윗줄은 그 뒤에 따라온다 */
+.homepage-hero-text h1, .homepage-sub { opacity: 0; }
+.homepage-intro.slide-in .homepage-hero-text h1 { animation: hero-name-in 1.8s var(--ease) .2s both; }
+.homepage-intro.slide-in .homepage-sub { animation: hero-sub-in 1.2s var(--ease) 1s both; }
+@keyframes hero-name-in {
+  from { opacity: 0; letter-spacing: .4em; transform: translateY(18px); filter: blur(6px); }
+  to { opacity: 1; letter-spacing: .04em; transform: none; filter: blur(0); }
+}
+@keyframes hero-sub-in {
+  from { opacity: 0; letter-spacing: .4em; transform: translateY(8px); }
+  to { opacity: .92; letter-spacing: .18em; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .homepage-intro.slide-in .homepage-hero-text h1, .homepage-intro.slide-in .homepage-sub { animation: none; opacity: 1; }
+}
 /* 밝은 사진은 데스크톱에서 글자를 검정으로. 모바일은 아래 그림자 띠 위에 흰 글자로 통일 */
 .homepage-block.dark { color: var(--fg); }
 .homepage-title-link { z-index: 1; text-shadow: 0 1px 12px rgba(0, 0, 0, .45); }
@@ -149,7 +166,8 @@ body.template-index .fixed-trigger, #keep-scrolling { text-shadow: 0 1px 10px rg
     background: linear-gradient(to top, rgba(0, 0, 0, .65), rgba(0, 0, 0, 0));
   }
   .homepage-hero-text { bottom: 24vh; }
-  .homepage-hero-text h1 { font-size: 48px; }
+  .homepage-hero-text h1 { font-size: 46px; letter-spacing: .03em; }
+  .homepage-sub { font-size: 15px; line-height: 16px; letter-spacing: .16em; margin-bottom: 16px; }
 }
 
 /* ---------- 하단 띠 ---------- */
