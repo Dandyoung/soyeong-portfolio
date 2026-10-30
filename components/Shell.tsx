@@ -2,11 +2,12 @@ import type { ReactNode } from "react";
 import { site } from "@/content/site";
 import FadeLink from "./FadeLink";
 import MenuTrigger from "./MenuTrigger";
+import ExternalLink from "./ExternalLink";
 
 /** 내부 경로는 페이드 링크, 외부 URL 은 새 탭, "#" 은 링크 없는 글자 */
 export function SiteLink({ href, className, children }: { href: string; className?: string; children: ReactNode }) {
   if (href === "#") return <span className={className}>{children}</span>;
-  if (/^https?:/.test(href)) return <a href={href} className={className} target="_blank" rel="noreferrer">{children}</a>;
+  if (/^https?:/.test(href)) return <ExternalLink href={href} className={className}>{children}</ExternalLink>;
   return <FadeLink href={href} className={className}>{children}</FadeLink>;
 }
 

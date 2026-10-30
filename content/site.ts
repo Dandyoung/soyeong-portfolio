@@ -15,12 +15,13 @@ export type CalendarEntry = {
 const asset = (p: string) => (process.env.NEXT_PUBLIC_BASE_PATH ?? "") + p;
 
 export const YOUTUBE_CHANNEL = "https://www.youtube.com/@%EC%9D%B4%EC%86%8C%EC%98%81-k3q";
-export const RECITAL_VIDEO = "https://www.youtube.com/watch?v=wyKtAE_AEEo";
+// youtu.be 짧은 주소가 휴대폰에서 유튜브 앱으로 가장 확실하게 넘어간다
+export const RECITAL_VIDEO = "https://youtu.be/wyKtAE_AEEo";
 
 export const site = {
   name: "Soyeong Lee",
   nameKo: "이소영",
-  role: "Daegeum",
+  role: "Daegeumer",
   description: "대금 연주자 이소영 Soyeong Lee",
   nav: [
     { label: "Info", href: "/info" },
