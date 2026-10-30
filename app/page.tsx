@@ -20,7 +20,7 @@ export default function HomePage() {
             <img className="homepage-image" src={intro.image} alt="" style={{ objectPosition: intro.position }} />
           )}
           <div className="homepage-hero-text">
-            <p className="homepage-sub medium uppercase">{site.nameKo} · {site.role}</p>
+            <p className="homepage-sub medium uppercase">{site.nameKo} / {site.role}</p>
             <h1>{site.name}</h1>
           </div>
         </div>

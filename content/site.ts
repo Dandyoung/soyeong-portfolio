@@ -34,7 +34,7 @@ export const site = {
     { items: [{ label: "Spotify", href: "#" }, { label: "Apple Music", href: "#" }] },
     { items: [{ label: "Credits", href: "#" }, { label: "Privacy Policy", href: "#" }] },
   ] satisfies FooterColumn[],
-  banner: { text: "달 그림자 — 제 1회 대금독주회 '시간의 틈새' 중", linkLabel: "[ Watch ]", href: RECITAL_VIDEO },
+  banner: { text: "달 그림자, 제 1회 대금독주회 '시간의 틈새' 중", linkLabel: "[ Watch ]", href: RECITAL_VIDEO },
   /** 배경 사운드. 유튜브 실황 '달 그림자' 음원을 받아 -18 LUFS 로 맞추고 페이드를 넣은 파일 */
   audio: { src: asset("/audio/dal-geurimja.m4a"), title: "달 그림자" },
 };
