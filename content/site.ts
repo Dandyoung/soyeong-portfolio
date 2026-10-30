@@ -21,7 +21,7 @@ export const RECITAL_VIDEO = "https://youtu.be/wyKtAE_AEEo";
 export const site = {
   name: "Soyeong Lee",
   nameKo: "이소영",
-  role: "Daegeumer",
+  role: "Daegeum",
   description: "대금 연주자 이소영 Soyeong Lee",
   nav: [
     { label: "Info", href: "/info" },
